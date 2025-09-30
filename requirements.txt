@@ -1,0 +1,3 @@
+flask
+docxtpl
+python-docx
