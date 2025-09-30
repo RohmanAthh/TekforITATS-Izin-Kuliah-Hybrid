@@ -1,3 +1,4 @@
 flask
 docxtpl
 python-docx
+gunicorn
