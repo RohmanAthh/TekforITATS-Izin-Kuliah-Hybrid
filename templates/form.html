@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Izin Kuliah Hybrid</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #2c3e50;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-size: 2.5rem;
+    }
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #34495e;
+      display: block;
+      font-size: 1.1rem;
+    }
+    .form-control {
+      border: 2px solid #e1e8ed;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: #fff;
+    }
+    input[type="date"] {
+      position: relative;
+    }
+    .input-group-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px 0 0 10px;
+    }
+    .form-select {
+      border: 2px solid #e1e8ed;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: #fff;
+    }
+    .btn-outline-primary {
+      border: 2px solid #667eea;
+      color: #667eea;
+      background: transparent;
+      transition: all 0.3s ease;
+      border-radius: 25px;
+      font-weight: 600;
+      padding: 10px 20px;
+      margin: 3px;
+      font-size: 0.9rem;
+      min-width: 120px;
+    }
+    .btn-outline-primary.active, .btn-outline-primary:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: transparent;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    }
+    .btn-outline-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-outline-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transition: width 0.6s, height 0.6s;
+      transform: translate(-50%, -50%);
+    }
+    .btn-outline-primary:active::before {
+      width: 300px;
+      height: 300px;
+    }
+    .form-group {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    canvas {
+      border: 2px dashed #bdc3c7;
+      border-radius: 10px;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .btn-primary {
+      width: 100%;
+      margin-top: 30px;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+    .btn-danger {
+      margin-top: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    iframe {
+      margin-top: 30px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .d-flex.flex-wrap {
+      justify-content: center;
+    }
+    .btn-group-toggle {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Form Izin Kuliah Hybrid</h2>
+    <form method="POST" action="/generate">
+      <div class="form-group">
+        <label>Nama Mahasiswa</label>
+        <input type="text" class="form-control" name="nama" required autocomplete="name" placeholder="Contoh: Abdurrahman Athaillah">
+      </div>
+      <div class="form-group">
+        <label>NPM</label>
+        <input type="text" class="form-control" name="npm" required autocomplete="username" placeholder="Contoh: 06.202x.x.xxxxx">
+      </div>
+      <div class="form-group">
+        <label>Program Studi</label>
+        <select class="form-select" name="program" required autocomplete="on">
+          <option value="">-- Pilih Program Studi --</option>
+          <option value="Teknik Informatika">Teknik Informatika</option>
+          <option value="Sistem Informasi">Sistem Informasi</option>
+          <option value="Teknik Elektro">Teknik Elektro</option>
+          <option value="Teknik Mesin">Teknik Mesin</option>
+          <option value="Manajemen">Manajemen</option>
+          <option value="Akuntansi">Akuntansi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Instansi / Tempat Bekerja</label>
+        <input type="text" class="form-control" name="instansi" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>Nama Mata Kuliah</label>
+        <select class="form-select" name="matakul" id="matakul_select" required onchange="toggleMatakulInput(); setDosenByMatakuliah();">
+          <option value="">-- Pilih Mata Kuliah --</option>
+          <option value="Pemrograman Berorientasi Web">Pemrograman Berorientasi Web</option>
+          <option value="Basis Data">Basis Data</option>
+          <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+          <option value="Kecerdasan Artifisial">Kecerdasan Artifisial</option>
+          <option value="Sistem Operasi">Sistem Operasi</option>
+          <option value="Komputasi Numerik">Komputasi Numerik</option>
+          <option value="Perancangan Dan Analisis Algoritma">Perancangan Dan Analisis Algoritma</option>
+          <option value="Lainnya">Lainnya (isi manual)</option>
+        </select>
+        <input type="text" class="form-control mt-2" name="matakul_manual" id="matakul_manual" placeholder="Isi manual jika tidak ada di daftar" style="display:none;">
+      </div>
+      <div class="form-group">
+        <label>Nama Dosen Pengampu</label>
+        <select class="form-select" name="dosen" id="dosen_select" required autocomplete="on">
+          <option value="">-- Pilih Dosen --</option>
+          <option value="Danang Haryo Sulaksono, S.ST., M.T.">Danang Haryo Sulaksono, S.ST., M.T.</option>
+          <option value="Dr.Rahmi Rizkiana Putri, S.ST.,M.Kom.">Dr. Rahmi Rizkiana Putri, S.ST.,M.Kom.</option>
+          <option value="Dr.Mochamad Junaidi Hidayat, ST, M.Ds">Dr. Mochamad Junaidi Hidayat, ST, M.Ds</option>
+          <option value="Muchamad Kurniawan, S.Kom.,M.Kom.">Muchamad Kurniawan, S.Kom.,M.Kom.</option>
+          <option value="Andy Rachman, S.T.,M.Kom.">Andy Rachman, S.T.,M.Kom.</option>
+          <option value="Dr.Rinci Kembang Hapsari, S.Si.,M.Kom.">Dr. Rinci Kembang Hapsari, S.Si.,M.Kom.</option>
+          <option value="Sugiyanto, S.E.,S.T.,M.M.,M.Kom., Ph.D.">Sugiyanto, S.E.,S.T.,M.M.,M.Kom., Ph.D.</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Kelas</label>
+        <input type="text" class="form-control" name="kelas" required placeholder="Contoh: V , X , P">
+      </div>
+       <div class="form-group">
+         <label>Pertemuan Minggu ke- (bisa pilih lebih dari satu)</label>
+         <div class="row justify-content-center">
+           <div class="col-md-8">
+             <div class="row g-2">
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke1" autocomplete="off"> Minggu Ke-1
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke2" autocomplete="off"> Minggu Ke-2
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke3" autocomplete="off"> Minggu Ke-3
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke4" autocomplete="off"> Minggu Ke-4
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke5" autocomplete="off"> Minggu Ke-5
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke6" autocomplete="off"> Minggu Ke-6
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke7" autocomplete="off"> Minggu Ke-7
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke8" autocomplete="off"> Minggu Ke-8
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke9" autocomplete="off"> Minggu Ke-9
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke10" autocomplete="off"> Minggu Ke-10
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke11" autocomplete="off"> Minggu Ke-11
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke12" autocomplete="off"> Minggu Ke-12
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke13" autocomplete="off"> Minggu Ke-13
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke14" autocomplete="off"> Minggu Ke-14
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke15" autocomplete="off"> Minggu Ke-15
+                 </label>
+               </div>
+               <div class="col-3">
+                 <label class="btn btn-outline-primary w-100">
+                   <input type="checkbox" name="pertemuan[]" value="Minggu ke16" autocomplete="off"> Minggu Ke-16
+                 </label>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="form-group">
+         <label>Alasan Izin Kuliah Hybrid</label>
+         <textarea class="form-control" name="alasan" rows="3" required placeholder=></textarea>
+       </div>
+       <div class="form-group">
+         <label>Tanggal Surat</label>
+         <div class="input-group">
+           <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+           <input type="date" class="form-control" name="tanggal_surat" required>
+         </div>
+       </div>
+
+       <div class="form-group">
+         <label>Tanda Tangan:</label><br>
+         <canvas id="signature-pad" width="400" height="200"></canvas><br>
+         <button type="button" class="btn btn-danger" onclick="clearPad()">Clear</button>
+         <input type="hidden" name="tanda_tangan" id="tanda_tangan">
+       </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Buat Surat</button>
+    </form>
+  <footer style="text-align: center; margin-top: 40px; padding: 20px; color: #666; font-size: 0.9rem;">
+    © 2025 Teknik Informatika ITATS. Dibuat dengan ❤️ oleh TekforITATS2024
+  </footer>
+  </div>
+
+  
+
+  <!-- Signature Pad -->
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+  <script>
+    var canvas = document.getElementById("signature-pad");
+    var signaturePad = new SignaturePad(canvas);
+
+    function clearPad() {
+      signaturePad.clear();
+    }
+
+    // Mata kuliah: toggle input manual jika "Lainnya" dipilih
+    function toggleMatakulInput() {
+      var select = document.getElementById('matakul_select');
+      var manual = document.getElementById('matakul_manual');
+      if (select.value === 'Lainnya') {
+        manual.style.display = '';
+        manual.required = true;
+      } else {
+        manual.style.display = 'none';
+        manual.required = false;
+        manual.value = '';
+      }
+    }
+
+    // Mapping mata kuliah ke dosen
+    const matkulToDosen = {
+      'Pemrograman Berorientasi Web': 'Danang Haryo Sulaksono, S.ST., M.T.',
+      'Basis Data': 'Dr.Rahmi Rizkiana Putri, S.ST.,M.Kom.',
+      'Bahasa Indonesia': 'Dr.Mochamad Junaidi Hidayat, ST, M.Ds',
+      'Kecerdasan Artifisial': 'Muchamad Kurniawan, S.Kom.,M.Kom.',
+      'Sistem Operasi': 'Andy Rachman, S.T.,M.Kom.',
+      'Komputasi Numerik': 'Dr.Rinci Kembang Hapsari, S.Si.,M.Kom.',
+      'Perancangan Dan Analisis Algoritma': 'Sugiyanto, S.E.,S.T.,M.M.,M.Kom., Ph.D.',
+      'Lainnya': ''
+    };
+
+    function setDosenByMatakuliah() {
+      var matkul = document.getElementById('matakul_select').value;
+      var dosenSelect = document.getElementById('dosen_select');
+      if (matkulToDosen[matkul]) {
+        dosenSelect.value = matkulToDosen[matkul];
+      } else {
+        dosenSelect.value = '';
+      }
+    }
+
+    // Saat submit, jika manual diisi, override value select
+    document.querySelector("form").addEventListener("submit", function (e) {
+      var select = document.getElementById('matakul_select');
+      var manual = document.getElementById('matakul_manual');
+      if (select.value === 'Lainnya' && manual.value.trim() !== '') {
+        // Buat input hidden agar value manual dikirim sebagai 'matakul'
+        var hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = 'matakul';
+        hidden.value = manual.value;
+        select.form.appendChild(hidden);
+        select.disabled = true; // agar select tidak ikut terkirim
+      }
+      if (!signaturePad.isEmpty()) {
+        var dataURL = signaturePad.toDataURL();
+        document.getElementById("tanda_tangan").value = dataURL;
+      }
+    });
+
+    // Toggle active class for button checkboxes
+    document.querySelectorAll('.btn-group-toggle .btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
