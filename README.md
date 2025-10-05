@@ -1,5 +1,7 @@
 # 🎓 TekforITATS - Izin Kuliah Hybrid
 
+Program Izin Kuliah Hybrid Dibuat Oleh Abdurrahman Athaillah TekforITATS 2024
+
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0+-lightgrey.svg)](https://flask.palletsprojects.com/)
