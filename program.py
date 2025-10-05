@@ -22,8 +22,8 @@ def generate():
     matakul = request.form["matakul"]
     dosen = request.form["dosen"]
     kelas = request.form["kelas"]
-    pertemuan = request.form["pertemuan"]
-    tanggal = request.form["tanggal"]
+    pertemuan_list = request.form.getlist("pertemuan[]")
+    pertemuan = ", ".join(pertemuan_list)
     alasan = request.form["alasan"]
     tanggal_surat = request.form["tanggal_surat"]
     ttd_base64 = request.form["tanda_tangan"]
@@ -60,7 +60,6 @@ def generate():
         "dosen": dosen,
         "kelas": kelas,
         "pertemuan": pertemuan,
-        "tanggal": format_tanggal(tanggal),
         "alasan": alasan,
         "tanggal_surat": format_tanggal(tanggal_surat),
         "tanda_tangan": tanda_tangan_img
